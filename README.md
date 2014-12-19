@@ -8,55 +8,53 @@ This goal of this project is take an originial dataset described in file README.
 This new file  has been generated processing the other files according to the process explained in the next section. It contains the average of the each variable that refers to a mean or standard desviation for each activity and each subject.
 
 
-### 2. Process to generate the resultDataSet.txt file
+### 2. Procedure to generate the resultDataSet.txt file
 
-1. Merges the training and the test sets to create one data set. 
+* Step 1 - Merges the training and the test sets to create one data set. 
 
-* Read the training X's
+Read the training X's
 
-* Read the test X's
+Read the test X's
 
-* Merge vertically both  sets
+Merge vertically both  sets
 
-2. Extracts only the measurements on the mean and standard deviation for each measurement. 
+* Step 2 - Extracts only the measurements on the mean and standard deviation for each measurement. 
 
-*  Read the feature.txt file to obtain the id of features that are a mean and/or std I assume that those features are the ones that include the string "mean()" or the string "std()" in their names
+Read the feature.txt file to obtain the id of features that are a mean and/or std I assume that those features are the ones that include the string "mean()" or the string "std()" in their names
 
+The total dataset is subset with the column numbers corresponding to the avg and std variables generating the Avg and Std data set.
 
-* The total dataset is subset with the column numbers corresponding to the avg and std variables generating the Avg and Std data set.
+The "subject" column is built  merging vertically the subject colum in the train and test sets
 
-* The "subject" column is built  merging vertically the subject colum in the train and test sets
-
-* The Avg and Std data set is augmented with the "subject" column. 
-
-
-3. Uses descriptive activity names to name the activities in the data set
-
-* The "y" column is built merging vertically the "y" column of the train and test sets and "yTest". Besides, it is renamed to "activity_id"
-
-*  Read the activity id and the activity name from the activity_labels.txt file 
-
-*  Join operation for replacing to obtain the "activity_name" for "each activity_id"" in the data set 
-
-* The Avg and Std data set is augmented with the "activity name" column
+The Avg and Std data set is augmented with the "subject" column. 
 
 
-4. Appropriately labels the data set with descriptive variable names. 
+* Step 3 - Uses descriptive activity names to name the activities in the data set
 
-* The names of the variables of the data set are replaced by the name of the selected features (just those ones that are mean or std) plus the "subject" and "activity" columns.
+The "y" column is built merging vertically the "y" column of the train and test sets and "yTest". Besides, it is renamed to "activity_id"
 
+Read the activity id and the activity name from the activity_labels.txt file 
 
-5. From the data set in step 4, creates a second, independent tidy data set with the average 
-of each variable for each activity and each subject
+Join operation for replacing to obtain the "activity_name" for "each activity_id"" in the data set 
 
-* The data set is melted by the "activity" and "subject" fields 
-
-* The molten data is dcast'ed by "activity" and "subject" field so we will have  the unique combinations of both fields. In addition, the average of the each column is calculated so we will have a column for each  measurement considered that will contain the average of that measurement for a particular combination of "activity" and "subject".
+The Avg and Std data set is augmented with the "activity name" column
 
 
-* The name of the columns that refers to variables are changed to the add the prefix "Avg-of-" indicating that the are mean fo the original variables.
+* Step 4 - Appropriately labels the data set with descriptive variable names. 
 
-* The result data set is written to a file called "resultDataSet.txt" including the column names but not the row names.
+The names of the variables of the data set are replaced by the name of the selected features (just those ones that are mean or std) plus the "subject" and "activity" columns.
+
+
+Step 5 - From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
+
+The data set is melted by the "activity" and "subject" fields 
+
+The molten data is dcast'ed by "activity" and "subject" field so we will have  the unique combinations of both fields. In addition, the average of the each column is calculated so we will have a column for each  measurement considered that will contain the average of that measurement for a particular combination of "activity" and "subject".
+
+
+The name of the columns that refers to variables are changed to the add the prefix "Avg-of-" indicating that the are mean fo the original variables.
+
+The result data set is written to a file called "resultDataSet.txt" including the column names but not the row names.
 
 ### 3. Code Book
 
